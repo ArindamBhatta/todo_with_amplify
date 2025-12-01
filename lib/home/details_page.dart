@@ -35,13 +35,13 @@ class DetailsPage extends StatelessWidget {
             Text("Start Time: ${task.startTime}"),
             Text("Deadline: ${task.absoluteDeadline}"),
             Text("Target Date: ${task.desireDeadline}"),
-            Text("Expected Submit: ${task.expectedSubmitDate}"),
+            // Text("Expected Submit: ${task.urgencyLevel}"),
             const SizedBox(height: 20),
             Row(
               children: [
                 ElevatedButton.icon(
                   onPressed: () {
-                    taskProvider.toggleTaskDone(categoryTitle, taskIndex);
+                    // taskProvider.toggleTaskDone(categoryTitle, taskIndex);
                   },
                   icon: Icon(task.isPending ? Icons.undo : Icons.check),
                   label: Text(
@@ -51,7 +51,7 @@ class DetailsPage extends StatelessWidget {
                 const SizedBox(width: 10),
                 ElevatedButton.icon(
                   onPressed: () {
-                    taskProvider.deleteTask(categoryTitle, taskIndex);
+                    // taskProvider.deleteTask(categoryTitle, taskIndex);
                     Navigator.pop(context);
                   },
                   icon: const Icon(Icons.delete),

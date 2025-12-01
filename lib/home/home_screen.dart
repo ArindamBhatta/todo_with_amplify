@@ -47,137 +47,35 @@ class _HomeScreenState extends State<HomeScreen>
               child: TabBarView(
                 controller: _tabController,
                 children:
-                    categories.map((categoryData) {
-                      final tasks = categoryData['tasks'] as List<ElementTask>;
-                      return GridView.builder(
-                        padding: const EdgeInsets.all(8.0),
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              childAspectRatio: 0.85,
-                              crossAxisSpacing: 8.0,
-                              mainAxisSpacing: 8.0,
-                            ),
-                        itemCount: tasks.length,
-                        itemBuilder: (context, index) {
-                          final task = tasks[index];
-                          final cardColor = Color();
-
-                          return OpenContainer(
-                            closedElevation: 4,
-                            openElevation: 0,
-                            closedShape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            transitionType: ContainerTransitionType.fade,
-                            closedBuilder: (context, action) {
-                              return Card(
-                                margin: EdgeInsets.zero,
-                                elevation: 1,
-                                child: Column(
-                                  children: [
-                                    Expanded(
-                                      child: Stack(
-                                        children: [
-                                          Positioned.fill(
-                                            child: ClipRRect(
-                                              borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(12),
-                                                topRight: Radius.circular(12),
-                                              ),
-                                              child: Image.asset(
-                                                categoryImageMap[task
-                                                        .category] ??
-                                                    '',
-                                                fit: BoxFit.cover,
-
-                                                colorBlendMode:
-                                                    BlendMode.darken,
-                                              ),
-                                            ),
-                                          ),
-                                          Positioned(
-                                            top: 10,
-                                            right: 10,
-                                            child: Icon(
-                                              task.isPending
-                                                  ? Icons.pending_actions
-                                                  : Icons.check_circle,
-                                              color: cardColor,
-                                            ),
-                                          ),
-                                          Positioned(
-                                            top: 10,
-                                            left: 8,
-                                            child: Text(
-                                              task.category,
-                                              style: TextStyle(
-                                                color: cardColor,
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Container(
-                                      color: cardColor.withAlpha(30),
-                                      height: 50,
-                                      width: double.infinity,
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(
-                                          task.name,
-                                          style: const TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                          textAlign: TextAlign.left,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              );
-                            },
-                            openBuilder: (context, action) {
-                              return DetailsPage(
-                                categoryTitle: categoryData['title'],
-                                taskIndex: index,
-                                task: task,
-                              );
-                            },
-                          );
-                        },
-                      );
+                    dummyData.map((task) {
+                      return Text(task.name);
                     }).toList(),
               ),
             ),
           ],
         ),
       ),
-      floatingActionButton: OpenContainer(
-        transitionDuration: Duration(milliseconds: 900),
-        transitionType: _transitionType,
-        openBuilder: (context, action) {
-          return AddTaskForm(onAdd: _addTaskToList);
-        },
-        closedElevation: 6,
-        closedShape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(50),
-        ),
-        closedColor: Colors.teal,
-        openColor: Colors.white,
+      // floatingActionButton: OpenContainer(
+      //   transitionDuration: Duration(milliseconds: 900),
+      //   transitionType: _transitionType,
+      //   openBuilder: (context, action) {
+      //     return AddTaskForm(onAdd: _addTaskToList);
+      //   },
+      //   closedElevation: 6,
+      //   closedShape: RoundedRectangleBorder(
+      //     borderRadius: BorderRadius.circular(50),
+      //   ),
+      //   closedColor: Colors.teal,
+      //   openColor: Colors.white,
 
-        closedBuilder: (context, action) {
-          return FloatingActionButton(
-            backgroundColor: Colors.teal,
-            onPressed: null,
-            child: const Icon(Icons.add, size: 30, color: Colors.white),
-          );
-        },
-      ),
+      //   closedBuilder: (context, action) {
+      //     return FloatingActionButton(
+      //       backgroundColor: Colors.teal,
+      //       onPressed: null,
+      //       child: const Icon(Icons.add, size: 30, color: Colors.white),
+      //     );
+      //   },
+      // ),
     );
   }
 }
